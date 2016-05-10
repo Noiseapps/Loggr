@@ -39,6 +39,11 @@ object Loggr {
         LogPrinter.print(Log.VERBOSE, tag, message)
     }
 
+    @JvmOverloads @JvmStatic fun v(tag: String = Loggr.tag, message: String, vararg format: String) {
+        checkInstance()
+        LogPrinter.print(Log.VERBOSE, tag, message, *format)
+    }
+
     @JvmOverloads @JvmStatic fun v(tag: String = Loggr.tag, obj: Any) {
         checkInstance()
         LogPrinter.print(Log.VERBOSE, tag, obj)
@@ -94,8 +99,9 @@ object Loggr {
     }
 
     // OTHERS
-    @JvmStatic fun json(jsonString: String) {
+    @JvmOverloads @JvmStatic fun json(tag: String = Loggr.tag, jsonString: String) {
         checkInstance()
+        LogPrinter.printJson(tag, jsonString)
     }
 
 }
